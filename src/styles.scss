@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* You can add global styles to this file, and also import other style files */
+body {
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.img-64 {
+    width: 64px;
+}
+
+
+$color_1: white;
+$background-color_1: #181B3A;
+$background-color_2: #E4F1FF;
+
+body {
+    background-color: $background-color_1 !important;
+}
+
+
+.bg-blue {
+    background-color: $background-color_1;
+    height: 100vh;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-image: url(../src/assets/sideImage.jpg);
+    background-size: cover;
+
+}
+
+.bg-blueLight {
+    background-color: $background-color_2;
+    border-radius: 50px 0px 50px 0px;
+}
+
+.imgradius-50 {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.vh-100 {
+    height: 100vh;
+}
+
+input {
+    border: none;
+    background: #fff;
+    outline: none;
+    color: #000;
+    padding: 0.5rem 2.5rem;
+    border-radius: 5px;
+}
+
+.bg-blank {
+    background-color: #00000000 !important;
+    border: 0px !important;
+    color: white !important;
+    text-align: center;
+    width: 100%;
+}
+
+.font-100 {
+    font-size: 100px;
+}
+
+.custom-card {
+    border: 0px !important;
+    box-shadow: 0 14px 28px #d7d7d708, 0 10px 10px #e3e3e385 !important;
+    border-radius: 21px !important;
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+$color_1: white;
+$background-color_1: #5C9CE5;
+$background-color_2: #E4F1FF;
+
+.primary-color {
+    color: $background-color_1;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+.border-radius-30{
+    border-radius: 30px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
