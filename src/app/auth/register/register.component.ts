@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,9 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router:Router,
     private authService: AuthService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private _loaderService:LoaderService)
+       {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
@@ -64,7 +67,14 @@ export class RegisterComponent implements OnInit {
         )
         this.router.navigate(['/auth'])
       },
-      (err: any) => {}
+      (err: any) => {
+        this._loaderService.loader.next(false);
+        Swal.fire(
+          'Oops!',
+           err.error.message,
+          'error'
+        )
+      }
     );
     }
   }

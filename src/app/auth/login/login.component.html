@@ -29,7 +29,6 @@
                                         <div *ngIf="loginError['password']?.invalid && (loginError['password']?.dirty || loginError['password']?.touched)"
                                             class="invalid-feedback">
                                             <div *ngIf="loginError['password']?.hasError('required')">Password is required.</div>
-                                            <div *ngIf="loginError['password']?.hasError('pattern')">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
                                         </div>
                                     </div>
                                     <div class="col-12">

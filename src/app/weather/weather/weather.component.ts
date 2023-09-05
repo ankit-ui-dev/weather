@@ -91,7 +91,19 @@ export class WeatherComponent implements OnInit, AfterViewInit {
     );
   }
   public signOff() {
-    localStorage.clear();
+
+    Swal.fire({
+      title: 'Are you sure to logout?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
     this._router.navigate(['/auth']);
+      } else if (result.isDenied) {
+      }
+    })
+    
   }
 }

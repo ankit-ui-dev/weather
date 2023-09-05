@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router} from '@angular/router';
+import Swal from 'sweetalert2';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +17,11 @@ export class LoginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private _router:Router,
     private authService:AuthService,
-    private route: ActivatedRoute
-    ) {
+    private route: ActivatedRoute,
+    private _loaderService:LoaderService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]]
+      password: ['', [Validators.required]]
     });
   }
 
@@ -39,12 +41,16 @@ export class LoginComponent implements OnInit{
           next: (res:any) => {
            const accessToken = res.metaData["access-token"]
             localStorage.setItem('Access-token',accessToken);
-            localStorage.setItem('user',res.data.firstName + ' ' +res.data.lastName  );
-              // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-              // this._router.navigateByUrl(returnUrl);
+            localStorage.setItem('user',res.data.firstName + ' ' +res.data.lastName);
               this._router.navigate(['/'])
           },
           error: error => {
+            this._loaderService.loader.next(false);
+            Swal.fire(
+              'Oops!',
+               error.error.message,
+              'error'
+            )
           }
       }
       )
