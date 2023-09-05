@@ -11,6 +11,7 @@ import { WeatherService } from '../weather.service';
 import { debounceTime, fromEvent, map } from 'rxjs';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-weather',
@@ -20,13 +21,13 @@ import { Router } from '@angular/router';
 export class WeatherComponent implements OnInit, AfterViewInit {
   @ViewChild('inputField') inputField: ElementRef | undefined;
   public reqSearch = 'Delhi';
-  public user:any;
+  public user: any;
   public sunrise: any;
   public sunset: any;
   public weatherInfo: any;
   public celsius: any;
-  public TimeStamp:any;
-  public weatherReport:any
+  public TimeStamp: any;
+  public weatherReport: any;
 
   public cities = ['Delhi', 'Antarctica', 'Mumbai', 'Ireland'];
 
@@ -35,7 +36,7 @@ export class WeatherComponent implements OnInit, AfterViewInit {
   constructor(
     private _weatherService: WeatherService,
     private _loaderService: LoaderService,
-    private _router:Router
+    private _router: Router
   ) {}
 
   ngAfterViewInit(): void {
@@ -54,39 +55,43 @@ export class WeatherComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.user = localStorage.getItem('user')
+    this.user = localStorage.getItem('user');
     this.weatherCall(this.reqSearch);
   }
 
-
   public weatherCall(cityName: any) {
-    this._weatherService.getWeather(cityName).subscribe( (res:any) => {
-          console.log(res);
-          this.reqSearch = res.name;
-          this.weatherReport = res;
-          this.celsius = Math.round(res?.main.temp - 273.15);
-          this.sunrise = new Date(res.sys.sunrise * 1000).toLocaleTimeString();
-          this.sunset = new Date(res.sys.sunset * 1000).toLocaleTimeString();
-          let time:any = new Date(res.dt * 1000 )
-          const options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-          };
-          
-          this.TimeStamp = time.toLocaleDateString('en-US', options);
-        },
-        (error)=>{
-            // this.error = error;
-            // this.loading = false;
-        }
-    
+    this._weatherService.getWeather(cityName).subscribe(
+      (res: any) => {
+        this.reqSearch = res.name;
+        this.weatherReport = res;
+        this.celsius = Math.round(res?.main.temp - 273.15);
+        this.sunrise = new Date(res.sys.sunrise * 1000).toLocaleTimeString();
+        this.sunset = new Date(res.sys.sunset * 1000).toLocaleTimeString();
+        let time: any = new Date(res.dt * 1000);
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+        };
+
+        this.TimeStamp = time.toLocaleDateString('en-US', options);
+      },
+      (error) => {
+        this._loaderService.loader.next(false);
+        Swal.fire({
+          title: 'Sorry ! ' + error.error.message,
+          confirmButtonText: 'Ok',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.weatherCall('delhi');
+          }
+        });
+      }
     );
   }
-  public signOff(){
+  public signOff() {
     localStorage.clear();
-    this._router.navigate(['/auth'])
-
+    this._router.navigate(['/auth']);
   }
 }

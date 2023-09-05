@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -56,7 +57,11 @@ export class RegisterComponent implements OnInit {
     const formBody= this.registerForm.value;
     this.authService.setUser(formBody).subscribe(
       (res: any) => {
-
+        Swal.fire(
+          'Good job!',
+          'You have succesfull login',
+          'success'
+        )
         this.router.navigate(['/auth'])
       },
       (err: any) => {}

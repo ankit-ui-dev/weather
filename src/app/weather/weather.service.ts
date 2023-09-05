@@ -12,7 +12,6 @@ export class WeatherService {
   private apiUrl = 'https://api.openweathermap.org/data/2.5/';
 
   getWeather(cityName:string) {
-    console.log(this.http.get(this.apiUrl + `forecast/daily?cnt=14&appid=${this.apiKey}&q=${cityName}`))
     return this.http.get(this.apiUrl + `weather?appid=${this.apiKey}&q=${cityName}`);
   }
 

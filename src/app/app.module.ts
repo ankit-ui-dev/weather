@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderInterceptor } from './shared/interceptor/loader.interceptor';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoaderInterceptor } from './shared/interceptor/loader.interceptor';
     ReactiveFormsModule,
     NgApexchartsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SweetAlert2Module
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
