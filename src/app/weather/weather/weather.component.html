@@ -1,25 +1,23 @@
 <div class="container-fluids">
   <div class="row">
-    <nav class="col-3 vh-100 bg-blue px-4">
-      <div class="position-sticky pt-3 d-flex flex-column justify-content-center align-items-center pt-5 px-3">
-     
+    <nav class="col-lg-3 col-12 vh-100 bg-blue pt-5">
+      <div class="position-sticky pt-5 mt-5 d-flex flex-column justify-content-center align-items-center px-3">
          <input type="text" placeholder="Search for a city..." #inputField>
           <i class="fa-solid fa-magnifying-glass"></i>
-        
         <div class="card bg-blank pt-5">
           <div class="card-body pt-5">
-            <div class="d-flex justify-content-between align-items-center py-2">
-              <h4>{{reqSearch}}</h4>
-              <div  class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center flex-md-wrap py-3">
+              <h4 class="text-start">{{reqSearch}}</h4>
+              <div class="w-25 d-flex justify-content-between align-items-center">
                 <img src="../../../assets/icon/sunrise.png">
-                <span class="pt-2 px-3">   {{sunrise}}</span>
+                <span class="pt-2 px-3">{{sunrise}}</span>
               </div>              
             </div>
-            <div class="d-flex justify-content-between align-items-center py-2" >
-              <p>{{TimeStamp}}</p>
-              <div  class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center flex-md-wrap py-3" >
+              <p class="text-start">{{TimeStamp}}</p>
+              <div class="w-25 d-flex justify-content-between align-items-center">
                 <img src="../../../assets/icon/sunset.png">
-                <span class="pt-2 px-3">   {{sunset}}</span>
+                <span class="pt-2 px-3">{{sunset}}</span>
               </div>   
             </div>
             <div class="d-flex justify-content-center pt-5 ">
@@ -30,13 +28,13 @@
       </div>
     </nav>
 
-    <main class="col-9 bg-blueLight px-5 py-2">
-      <header class="navbar flex-md-nowrap pb-5 ">
+    <main class="col-lg-9 col-12 bg-blueLight px-3 py-2">
+      <header class="navbar flex-wrap pb-5 px-2 ">
         <div class="pt-3">
           <h3>Welcome Back {{user}}</h3>
           <p>Check out today`s weather Information</p>
         </div>       
-        <div class="navbar-nav px-5" >          
+        <div class="navbar-nav pe-5" >          
           <div class="nav-item text-nowrap">
             <a class="px-5" (click)="signOff()" class="pe-auto cursor-pointer"><img title="Sign Off" src="../../../assets/icon/power-off.png"></a>
           </div>
@@ -46,8 +44,8 @@
         <app-weather-graph [reqSearch]="reqSearch"></app-weather-graph>
       
       </div>
-      <div class="d-flex justify-content-around pt-5 mt-5">
-        <div class="col-3">
+      <div class="d-flex justify-content-between flex-wrap row-gap-3 pt-5 mt-5 ">
+        <div class="col-lg-3 col-12 px-2">
           <div class="card custom-card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
@@ -58,7 +56,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-12 px-2">
           <div class="card custom-card ">
             <div class="card-body">
               <div class="d-flex justify-content-between">
@@ -69,7 +67,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-12 px-2">
           <div class="card custom-card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
@@ -80,7 +78,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-12 px-2">
           <div class="card custom-card">
             <div class="card-body">
               <div class="d-flex justify-content-between">

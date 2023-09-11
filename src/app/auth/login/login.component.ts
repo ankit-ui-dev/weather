@@ -45,10 +45,11 @@ export class LoginComponent implements OnInit{
               this._router.navigate(['/'])
           },
           error: error => {
+            console.log(error)
             this._loaderService.loader.next(false);
             Swal.fire(
               'Oops!',
-               error.error.message,
+               error.error.error,
               'error'
             )
           }
