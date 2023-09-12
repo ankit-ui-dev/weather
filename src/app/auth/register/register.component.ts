@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
       (res: any) => {
         Swal.fire(
           'Good job!',
-          'You have succesfull login',
+          'You have succesfull Register',
           'success'
         )
         this.router.navigate(['/auth'])

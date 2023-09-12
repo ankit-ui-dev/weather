@@ -21,7 +21,7 @@
               </div>   
             </div>
             <div class="d-flex justify-content-center pt-5 ">
-              <h1 class="font-100">{{celsius}}&deg; </h1>
+              <h1 class="font-100">{{celsius}}&deg;C </h1>
             </div>            
           </div>
         </div>
@@ -63,7 +63,7 @@
                 <h5>Weather status</h5>
                 <img src="../../../assets/icon/thermometer.png">
               </div>
-             <h1 class="primary-color text-center pt-4"> 50% </h1>
+             <h1 class="primary-color text-center pt-4">{{celsius}}&deg;C </h1>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
                 <h5>Cloud Info</h5>
                 <img src="../../../assets/icon/cloud.png">
               </div>
-             <h1 class="primary-color text-center pt-4"> 50% </h1>
+             <h1 class="primary-color text-center pt-4">  {{(weatherReport?.main?.feels_like - 273).toFixed(2)}}&deg;C </h1>
             </div>
           </div>
         </div>
