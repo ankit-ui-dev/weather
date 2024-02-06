@@ -1,17 +1,18 @@
 <div class="container-fluids">
     <div class="row">
         <div class="d-flex justify-content-center align-items-center vh-100">
-            <div class="col-10 col-lg-4">
+            <div class="col-10 col-xl-3">
                 <h3 class="mb-3 text-white">Login Now</h3>
-                <div class="bg-white border-radius-30">
+                <div class="bg-white border-radius-5">
                     <div class="row">
-                        <div class="col-md-12 pe-0">
-                            <div class="form-left h-100 py-5 px-5">
+                        <div class="col-md-12 ">
+                            <div class="p-3">
                                 <form  [formGroup]="loginForm" class="row g-4" (submit)="onLogin()">
+                                   <div class="d-flex justify-content-center align-items-center flex-column gap-1">
                                     <div class="form-group">
                                         <label for="email" class="form-label">Email:</label>
                                         <input class="form-control" type="text" id="email" name="email"
-                                            formControlName="email" placeholder="Please enter a valid Email Address"
+                                            formControlName="email" placeholder="Email address"
                                             [class.is-invalid]="loginError['email'].invalid && (loginError['email'].dirty || loginError['email'].touched)"
                                             required>
                                         <div *ngIf="loginError['email']?.invalid && (loginError['email']?.dirty || loginError['email']?.touched)"
@@ -22,8 +23,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="form-label">Password:</label>
-                                        <input class="form-control" type="text" id="password" name="password"
-                                            formControlName="password" placeholder="Please enter a valid password"
+                                        <input class="form-control" type="password" id="password" name="password"
+                                            formControlName="password" placeholder="Password"
                                             [class.is-invalid]="loginError['password'].invalid && (loginError['password'].dirty || loginError['password'].touched)"
                                             required>
                                         <div *ngIf="loginError['password']?.invalid && (loginError['password']?.dirty || loginError['password']?.touched)"
@@ -37,6 +38,7 @@
                                             <p class=" mt-4">Not a member? <a href="/auth/register">Register</a></p>                    
                                           </div>
                                     </div>
+                                   </div>
                                 </form>
                             </div>
                         </div>

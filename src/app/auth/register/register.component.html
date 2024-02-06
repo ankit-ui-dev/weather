@@ -1,17 +1,18 @@
 <div class="container-fluids">
     <div class="row">
         <div class="d-flex justify-content-center align-items-center vh-100">
-            <div class="col-4">
+            <div class="col-10 col-xl-3">
                 <h3 class="mb-3 text-white">Register Now</h3>
                 <div class="bg-white shadow rounded">
                     <div class="row">
                         <div class="col-md-12 pe-0">
-                            <div class="form-left h-100 py-5 px-5">
-                                <form [formGroup]="registerForm" (submit)="onRegister()" class="row g-4">
-                                    <div class="form-group">
+                            <div class="form-left h-100 p-3">
+                                <form [formGroup]="registerForm" (submit)="onRegister()" class="row">
+                                   <div class="d-flex justify-content-center align-items-center flex-column gap-1">
+                                    <div>
                                         <label for="firstName" class="form-label">First Name:</label>
                                         <input class="form-control" type="text" id="firstName" name="firstName"
-                                            formControlName="firstName" placeholder="Please enter a valid First Name"
+                                            formControlName="firstName" placeholder="First name"
                                             [class.is-invalid]="registerError['firstName'].invalid && (registerError['firstName'].dirty || registerError['firstName'].touched)"
                                             required>
                                         <div *ngIf="registerError['firstName'].invalid && (registerError['firstName'].dirty || registerError['firstName'].touched)"
@@ -20,10 +21,10 @@
                                             <span *ngIf="registerError['firstName']?.hasError('pattern')">First Name is invalid.</span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div>
                                         <label for="lastName" class="form-label">Last Name:</label>
                                         <input class="form-control" type="text" id="lastName" name="lastName"
-                                            formControlName="lastName" placeholder="Please enter a valid Last Name"
+                                            formControlName="lastName" placeholder="Last name"
                                             [class.is-invalid]="registerError['lastName'].invalid && (registerError['lastName'].dirty || registerError['lastName'].touched)"
                                             required>
                                         <div *ngIf="registerError['lastName'].invalid && (registerError['lastName'].dirty || registerError['lastName'].touched)"
@@ -32,10 +33,10 @@
                                             <span *ngIf="registerError['lastName']?.hasError('pattern')">Last Name is invalid.</span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div>
                                         <label for="email" class="form-label">Email:</label>
                                         <input class="form-control" type="text" id="email" name="email"
-                                            formControlName="email" placeholder="Please enter a valid Email Address"
+                                            formControlName="email" placeholder="Email address"
                                             [class.is-invalid]="registerError['email'].invalid && (registerError['email'].dirty || registerError['email'].touched)"
                                             required>
                                         <div *ngIf="registerError['email']?.invalid && (registerError['email']?.dirty || registerError['email']?.touched)"
@@ -44,10 +45,10 @@
                                             <div *ngIf="registerError['email']?.hasError('pattern')">Email is invalid.</div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div>
                                         <label for="password" class="form-label">Password:</label>
                                         <input class="form-control" type="text" id="password" name="password"
-                                            formControlName="password" placeholder="Please enter a valid password"
+                                            formControlName="password" placeholder="Password"
                                             [class.is-invalid]="registerError['password'].invalid && (registerError['password'].dirty || registerError['password'].touched)"
                                             required>
                                         <div *ngIf="registerError['password']?.invalid && (registerError['password']?.dirty || registerError['password']?.touched)"
@@ -61,9 +62,7 @@
                                         <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
                                         <p class=" mt-4">Already member? <a href="/auth">Login</a></p>                    
                                       </div>
-                                   
-
-
+                                   </div>
                                 </form>
                             </div>
                         </div>

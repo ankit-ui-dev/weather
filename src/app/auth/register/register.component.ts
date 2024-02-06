@@ -68,10 +68,11 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/auth'])
       },
       (err: any) => {
+        console.log(err)
         this._loaderService.loader.next(false);
         Swal.fire(
           'Oops!',
-           err.error.message,
+           err.error.error,
           'error'
         )
       }
