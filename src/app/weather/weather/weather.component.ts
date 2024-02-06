@@ -39,7 +39,7 @@ export class WeatherComponent implements OnInit, AfterViewInit {
     if (this.inputField) {
       fromEvent(this.inputField.nativeElement, 'keyup').pipe(
         map((event: any) => event.target.value),
-        debounceTime(500)
+        debounceTime(800)
       ).subscribe((res: string) => {
         this.reqSearch = res;
         this.weatherCall(this.reqSearch);
