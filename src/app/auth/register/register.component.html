@@ -1,72 +1,51 @@
-<div class="container-fluids">
-    <div class="row">
-        <div class="d-flex justify-content-center align-items-center vh-100">
-            <div class="col-10 col-xl-3">
-                <h3 class="mb-3 text-white">Register Now</h3>
-                <div class="bg-white shadow rounded">
-                    <div class="row">
-                        <div class="col-md-12 pe-0">
-                            <div class="form-left h-100 p-3">
-                                <form [formGroup]="registerForm" (submit)="onRegister()" class="row">
-                                   <div class="d-flex justify-content-center align-items-center flex-column gap-1">
-                                    <div>
-                                        <label for="firstName" class="form-label">First Name:</label>
-                                        <input class="form-control" type="text" id="firstName" name="firstName"
-                                            formControlName="firstName" placeholder="First name"
-                                            [class.is-invalid]="registerError['firstName'].invalid && (registerError['firstName'].dirty || registerError['firstName'].touched)"
-                                            required>
-                                        <div *ngIf="registerError['firstName'].invalid && (registerError['firstName'].dirty || registerError['firstName'].touched)"
-                                            class="invalid-feedback">
-                                            <span *ngIf="registerError['firstName']?.hasError('required')">First Name is required.</span>
-                                            <span *ngIf="registerError['firstName']?.hasError('pattern')">First Name is invalid.</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="lastName" class="form-label">Last Name:</label>
-                                        <input class="form-control" type="text" id="lastName" name="lastName"
-                                            formControlName="lastName" placeholder="Last name"
-                                            [class.is-invalid]="registerError['lastName'].invalid && (registerError['lastName'].dirty || registerError['lastName'].touched)"
-                                            required>
-                                        <div *ngIf="registerError['lastName'].invalid && (registerError['lastName'].dirty || registerError['lastName'].touched)"
-                                            class="invalid-feedback">
-                                            <span *ngIf="registerError['lastName']?.hasError('required')">Last Name is required.</span>
-                                            <span *ngIf="registerError['lastName']?.hasError('pattern')">Last Name is invalid.</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="email" class="form-label">Email:</label>
-                                        <input class="form-control" type="text" id="email" name="email"
-                                            formControlName="email" placeholder="Email address"
-                                            [class.is-invalid]="registerError['email'].invalid && (registerError['email'].dirty || registerError['email'].touched)"
-                                            required>
-                                        <div *ngIf="registerError['email']?.invalid && (registerError['email']?.dirty || registerError['email']?.touched)"
-                                            class="invalid-feedback">
-                                            <div *ngIf="registerError['email']?.hasError('required')">Email is required.</div>
-                                            <div *ngIf="registerError['email']?.hasError('pattern')">Email is invalid.</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="password" class="form-label">Password:</label>
-                                        <input class="form-control" type="text" id="password" name="password"
-                                            formControlName="password" placeholder="Password"
-                                            [class.is-invalid]="registerError['password'].invalid && (registerError['password'].dirty || registerError['password'].touched)"
-                                            required>
-                                        <div *ngIf="registerError['password']?.invalid && (registerError['password']?.dirty || registerError['password']?.touched)"
-                                            class="invalid-feedback">
-                                            <div *ngIf="registerError['password']?.hasError('required')">Password is required.</div>
-                                            <div *ngIf="registerError['password']?.hasError('pattern')">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
-                                        <p class=" mt-4">Already member? <a href="/auth">Login</a></p>                    
-                                      </div>
-                                   </div>
-                                </form>
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="card border-0 shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Register Here</h2>
+                    <form [formGroup]="registerForm" (submit)="onRegister()" class="row g-3">
+                        <div class="col-12">
+                            <label for="firstName" class="form-label">First Name:</label>
+                            <input class="form-control" type="text" id="firstName" name="firstName"
+                                formControlName="firstName" placeholder="First name" required>
+                            <div *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)"
+                                class="invalid-feedback">
+                                <span *ngIf="registerForm.get('firstName')?.hasError('required')">First Name is required.</span>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-12">
+                            <label for="lastName" class="form-label">Last Name:</label>
+                            <input class="form-control" type="text" id="lastName" name="lastName"
+                                formControlName="lastName" placeholder="Last name" required>
+                            <div *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)"
+                                class="invalid-feedback">
+                                <span *ngIf="registerForm.get('lastName')?.hasError('required')">Last Name is required.</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email:</label>
+                            <input class="form-control" type="email" id="email" name="email"
+                                formControlName="email" placeholder="Email address" required>
+                            <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+                                class="invalid-feedback">
+                                <span *ngIf="registerForm.get('email')?.hasError('required')">Email is required.</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="password" class="form-label">Password:</label>
+                            <input class="form-control" type="password" id="password" name="password"
+                                formControlName="password" placeholder="Password" required>
+                            <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+                                class="invalid-feedback">
+                                <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required.</span>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mt-3" [disabled]="registerForm.invalid">Submit</button>
+                            <p class="mt-3">Already a member? <a href="/auth" class="text-decoration-none">Login here</a></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

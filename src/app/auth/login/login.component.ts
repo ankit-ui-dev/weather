@@ -12,6 +12,7 @@ import { LoaderService } from 'src/app/shared/loader/loader.service';
 })
 export class LoginComponent implements OnInit{
   loginForm: FormGroup;
+  passwordVisible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +34,11 @@ export class LoginComponent implements OnInit{
      }
     
   }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+  
   onLogin(){
     if (this.loginForm.valid) {
       const body= this.loginForm.value;
