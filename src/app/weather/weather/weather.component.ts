@@ -19,8 +19,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit, AfterViewInit {
-  @ViewChild('inputField') inputField: ElementRef | undefined;
-  public reqSearch = 'Delhi';
+  @ViewChild('inputField') inputField: ElementRef<HTMLInputElement> | undefined;
+  public reqSearch: string = 'Delhi';
   public user: any;
   public sunrise: any;
   public sunset: any;
@@ -29,10 +29,6 @@ export class WeatherComponent implements OnInit, AfterViewInit {
   public TimeStamp: any;
   public weatherReport: any;
 
-  public cities = ['Delhi', 'Antarctica', 'Mumbai', 'Ireland'];
-
-  // @Output() childEvent = new EventEmitter<string>();
-
   constructor(
     private _weatherService: WeatherService,
     private _loaderService: LoaderService,
@@ -40,18 +36,15 @@ export class WeatherComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    const searchTerm = fromEvent(this.inputField?.nativeElement, 'keyup').pipe(
-      map((event: any) => {
-        this._loaderService.loader.next(true);
-        return event.target.value;
-      }),
-      debounceTime(500)
-    );
-    searchTerm.subscribe((res: any) => {
-      this.reqSearch = res;
-      this.weatherCall(this.reqSearch);
-      this._loaderService.loader.next(false);
-    });
+    if (this.inputField) {
+      fromEvent(this.inputField.nativeElement, 'keyup').pipe(
+        map((event: any) => event.target.value),
+        debounceTime(500)
+      ).subscribe((res: string) => {
+        this.reqSearch = res;
+        this.weatherCall(this.reqSearch);
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -59,7 +52,8 @@ export class WeatherComponent implements OnInit, AfterViewInit {
     this.weatherCall(this.reqSearch);
   }
 
-  public weatherCall(cityName: any) {
+  public weatherCall(cityName: string): void {
+    this._loaderService.loader.next(true);
     this._weatherService.getWeather(cityName).subscribe(
       (res: any) => {
         this.reqSearch = res.name;
@@ -74,13 +68,13 @@ export class WeatherComponent implements OnInit, AfterViewInit {
           day: 'numeric',
           hour: '2-digit',
         };
-
         this.TimeStamp = time.toLocaleDateString('en-US', options);
+        this._loaderService.loader.next(false); 
       },
       (error) => {
         this._loaderService.loader.next(false);
         Swal.fire({
-          title: 'Sorry ! ' + error.error.message,
+          title: 'Sorry! ' + error.error.message,
           confirmButtonText: 'Ok',
         }).then((result) => {
           if (result.isConfirmed) {
@@ -90,6 +84,7 @@ export class WeatherComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
   public signOff() {
 
     Swal.fire({
